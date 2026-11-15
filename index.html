@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f1115" />
+  <meta name="description" content="Anas Alnagar — frontend developer in Barcelona. Responsive web apps with React and TypeScript, from auth flows and admin dashboards to Stripe checkouts." />
+  <title>Anas Alnagar — Frontend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <!-- ===== Boot screen (shown once per visit, click or press any key to skip) ===== -->
+  <div class="boot-screen" id="boot-screen" role="status" aria-label="Loading portfolio">
+    <div class="boot-logo">AA<span>.</span></div>
+    <div class="boot-progress"><div class="boot-progress-fill" id="boot-progress-fill"></div></div>
+    <div class="boot-log" id="boot-log">starting up…</div>
+    <div class="boot-skip">click or press any key to skip</div>
+  </div>
+
+  <div class="desktop" id="desktop">
+
+    <!-- ===== Top menu bar ===== -->
+    <header class="menubar">
+      <div class="menu-left">
+        <span class="logo" aria-hidden="true">▲</span>
+        <button class="menulink active" data-open="about">Anas Alnagar</button>
+        <button class="menulink" data-open="projects">Projects</button>
+        <button class="menulink" data-open="experience">Experience</button>
+        <button class="menulink" data-open="contact">Contact</button>
+      </div>
+      <div class="menu-right">
+        <span class="status-dot" title="Open to work"></span>
+        <span class="status-text">Open to frontend roles · Barcelona &amp; remote</span>
+        <span id="clock">—</span>
+      </div>
+    </header>
+
+    <!-- ===== Terminal widget ===== -->
+    <section class="terminal-widget" aria-label="Terminal">
+      <div class="terminal-bar"><span></span><span></span><span></span><small>zsh — anas</small></div>
+      <div class="terminal-body" id="terminal-body" aria-live="polite"></div>
+    </section>
+
+    <!-- ===== Hero ===== -->
+    <main class="hero" aria-label="Welcome">
+      <span class="hero-eyebrow">// FRONTEND DEVELOPER · REACT &amp; TYPESCRIPT</span>
+      <p class="hero-intro">Hi, I'm</p>
+      <h1 id="hero-name" aria-label="Anas."><span class="hero-letter" aria-hidden="true">A</span><span class="hero-letter" aria-hidden="true">N</span><span class="hero-letter" aria-hidden="true">A</span><span class="hero-letter" aria-hidden="true">S</span><span class="hero-letter hero-dot" aria-hidden="true">.</span></h1>
+      <p class="hero-description">I build responsive web apps with React and TypeScript —<br />from auth flows and admin dashboards to Stripe checkouts.</p>
+      <button class="explore" data-open="projects">See my work <span>→</span></button>
+    </main>
+
+    <!-- ===== Desktop icons ===== -->
+    <div class="desktop-icons" aria-label="Desktop files">
+      <button class="desktop-icon" data-open="projects" style="--x:79%;--y:17%">
+        <span class="folder steel"><span class="folder-flap"></span></span><span>Projects</span>
+      </button>
+      <button class="desktop-icon" data-open="about" style="--x:90%;--y:37%">
+        <span class="folder graphite"><span class="folder-flap"></span></span><span>About Me</span>
+      </button>
+      <button class="desktop-icon" data-open="skills" style="--x:75%;--y:55%">
+        <span class="folder olive"><span class="folder-flap"></span></span><span>Tech Stack</span>
+      </button>
+      <button class="desktop-icon" data-open="contact" style="--x:89%;--y:72%">
+        <span class="file-icon mail-file">@</span><span>Contact.eml</span>
+      </button>
+      <button class="desktop-icon" data-open="resume" style="--x:9%;--y:52%">
+        <span class="file-icon pdf-file"><small>PDF</small></span><span>Resume.pdf</span>
+      </button>
+      <button class="desktop-icon" data-open="experience" style="--x:17%;--y:70%">
+        <span class="file-icon cv-file"><small>LOG</small></span><span>Experience.log</span>
+      </button>
+      <button class="desktop-icon icon-now" data-open="now" style="--x:29%;--y:83%">
+        <span class="file-icon text-file"><small>&gt;_</small></span><span>now.md</span>
+      </button>
+    </div>
+
+    <!-- ===== Windows ===== -->
+    <div class="windows" id="windows">
+
+      <!-- About -->
+      <section class="window" id="window-about" role="dialog" aria-label="About me" aria-modal="false" hidden>
+        <div class="window-bar">
+          <div class="traffic"><button class="close" data-close aria-label="Close window"></button><span
+              class="minimize"></span><button class="maximize" data-maximize aria-label="Maximize window"></button></div>
+          <span>about_me.tsx</span><span class="window-bar-end">01</span>
+        </div>
+        <div class="window-body">
+          <span class="section-kicker">01 / WHO I AM</span>
+          <div class="about-grid">
+            <div>
+              <h2>Hey, I'm <span class="accent">Anas.</span></h2>
+              <p>I'm a frontend developer who started in UI/UX design, so I care about how an interface feels, not only
+                whether it works.</p>
+              <p>I've built complete client-side applications on top of real REST APIs: JWT authentication, role-based
+                dashboards, CRUD screens, charts, drag-and-drop boards and payment flows. Alongside that, I do freelance
+                work on e-commerce stores (Shopify, PrestaShop), which keeps me close to real business needs.</p>
+              <p>I work comfortably in multicultural teams and speak English, Spanish and Arabic.</p>
+              <button class="inline-link" data-open="contact">Let's work together →</button>
+            </div>
+            <div class="portrait">
+              <span>AA</span>
+              <small>DESIGN · BUILD · SHIP</small>
+            </div>
+          </div>
+          <dl class="facts">
+            <div><dt>Location</dt><dd>Barcelona, Spain</dd></div>
+            <div><dt>Focus</dt><dd>Web Developer</dd></div>
+            <div><dt>Languages</dt><dd>English (B1) · Spanish (A2) · Arabic (native)</dd></div>
+            <div><dt>Status</dt><dd class="status-available">Available for work</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="window wide-window" id="window-projects" role="dialog" aria-label="Projects" aria-modal="false" hidden>
+        <div class="window-bar">
+          <div class="traffic"><button class="close" data-close aria-label="Close window"></button><span
+              class="minimize"></span><button class="maximize" data-maximize aria-label="Maximize window"></button></div>
+          <span>~/projects</span><span class="window-bar-end">15 items</span>
+        </div>
+        <div class="window-body">
+          <span class="section-kicker">02 / SELECTED WORK</span>
+          <h2>Featured <span class="accent">projects.</span></h2>
+          <p class="window-lead">Real apps built against REST APIs, each with a live demo and source code. Hover a
+            screenshot to scroll through it, or click it to see the whole page.</p>
+
+          <div class="featured-grid">
+
+            <article class="project-card">
+              <div class="project-shot"><img src="assets/projects/italumni.webp" alt="itAlumni home page screenshot" loading="lazy" /><span class="badge badge-new">New</span></div>
+              <div class="project-info">
+                <h3>itAlumni</h3>
+                <p>Alumni platform for IT Academy graduates: an alumni network, job board and events, with search and
+                  filters. My current course project.</p>
+                <div class="chips"><span>TypeScript</span><span>Vite</span><span>Tailwind</span><span>Vitest</span></div>
+                <div class="project-links">
+                  <a href="https://it-alumni-pink.vercel.app" target="_blank" rel="noopener noreferrer">Live demo ↗</a>
+                  <a href="https://github.com/onisEg/itAlumni" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-shot"><img src="assets/projects/hotel-booking.webp" alt="StayCation hotel booking screenshot" loading="lazy" /><span class="badge">Team project</span></div>
+              <div class="project-info">
+                <h3>StayCation · Hotel Booking</h3>
+                <p>Two-sided booking platform. Guests search rooms, save favourites and pay with Stripe; admins manage
+                  rooms, facilities, ads, users and bookings from a dashboard with charts.</p>
+                <div class="chips"><span>React</span><span>TypeScript</span><span>Material UI</span><span>Stripe</span><span>React Hook Form</span><span>Axios</span></div>
+                <div class="project-links">
+                  <a href="https://booking-iota-one.vercel.app/" target="_blank" rel="noopener noreferrer">Live demo ↗</a>
+                  <a href="https://github.com/DevsquadEg/booking" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-shot"><img src="assets/projects/pms.webp" alt="Project Management System screenshot" loading="lazy" /></div>
+              <div class="project-info">
+                <h3>Project Management System</h3>
+                <p>Role-based app for managers and employees. Managers create projects and assign tasks; employees move
+                  their tasks on a drag-and-drop board. Full auth flow, dashboard charts and dark mode.</p>
+                <div class="chips"><span>React</span><span>TypeScript</span><span>React Bootstrap</span><span>dnd-kit</span><span>AG Charts</span></div>
+                <div class="project-links">
+                  <a href="https://project-management-system-y5bw.vercel.app/" target="_blank" rel="noopener noreferrer">Live demo ↗</a>
+                  <a href="https://github.com/onisEg/project-management-system" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-shot"><img src="assets/projects/bookshop.webp" alt="Book Shop screenshot" loading="lazy" /></div>
+              <div class="project-info">
+                <h3>Book Shop</h3>
+                <p>Online bookstore with catalogue, book details, a cart managed with Redux Toolkit and Stripe checkout.</p>
+                <div class="chips"><span>React</span><span>TypeScript</span><span>Redux Toolkit</span><span>Material UI</span><span>Stripe</span></div>
+                <div class="project-links">
+                  <a href="https://bookshop-git-main-onisegs-projects.vercel.app/" target="_blank" rel="noopener noreferrer">Live demo ↗</a>
+                  <a href="https://github.com/onisEg/bookshop" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-shot"><img src="assets/projects/food-recipes.webp" alt="Food Recipes screenshot" loading="lazy" /></div>
+              <div class="project-info">
+                <h3>Food Recipes</h3>
+                <p>Recipe management dashboard. Admins manage recipes, categories and users; regular users browse recipes
+                  and save favourites. JWT auth and protected routes.</p>
+                <div class="chips"><span>React</span><span>React Bootstrap</span><span>React Hook Form</span><span>Axios</span><span>JWT</span></div>
+                <div class="project-links">
+                  <a href="https://food-app-six-sepia.vercel.app" target="_blank" rel="noopener noreferrer">Live demo ↗</a>
+                  <a href="https://github.com/onisEg/food_app" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-shot"><img src="assets/projects/user-management.webp" alt="User Management System screenshot" loading="lazy" /></div>
+              <div class="project-info">
+                <h3>User Management System</h3>
+                <p>Admin dashboard to log in, list, view, add and edit users, with a profile page and validated forms.</p>
+                <div class="chips"><span>React</span><span>TypeScript</span><span>React Bootstrap</span><span>React Hook Form</span></div>
+                <div class="project-links">
+                  <a href="https://user-management-system-orpin.vercel.app/" target="_blank" rel="noopener noreferrer">Live demo ↗</a>
+                  <a href="https://github.com/onisEg/userManagementSystem" target="_blank" rel="noopener noreferrer">Code ↗</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <h3 class="subsection-title">Earlier work <span>HTML, CSS, JavaScript and first React projects</span></h3>
+          <div class="earlier-grid">
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/rent-cars.webp" alt="RentCars screenshot" loading="lazy" /></div><div class="mini-info"><h4>RentCars</h4><small>React</small><div class="project-links"><a href="https://cars-mocha-phi.vercel.app/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/cars" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/contacts.webp" alt="Contacts screenshot" loading="lazy" /></div><div class="mini-info"><h4>Contacts</h4><small>React</small><div class="project-links"><a href="https://contacts-indol.vercel.app/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/contacts" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/ecommerce.webp" alt="eCommerce screenshot" loading="lazy" /></div><div class="mini-info"><h4>eCommerce</h4><small>HTML · CSS · JS</small><div class="project-links"><a href="https://oniseg.github.io/eCommerce/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/eCommerce" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/busicol.webp" alt="Busicol screenshot" loading="lazy" /></div><div class="mini-info"><h4>Busicol</h4><small>HTML · CSS · Bootstrap</small><div class="project-links"><a href="https://oniseg.github.io/busicol/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/busicol" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/fabric-store.webp" alt="Fabric Store screenshot" loading="lazy" /></div><div class="mini-info"><h4>Fabric Store</h4><small>HTML · CSS · JS</small><div class="project-links"><a href="https://oniseg.github.io/FabricStore/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/FabricStore" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/bmi-calculator.webp" alt="BMI Calculator screenshot" loading="lazy" /></div><div class="mini-info"><h4>BMI Calculator</h4><small>HTML · CSS · JS</small><div class="project-links"><a href="https://oniseg.github.io/BMI-calculator/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/BMI-calculator" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/my-family.webp" alt="My Family screenshot" loading="lazy" /></div><div class="mini-info"><h4>My Family</h4><small>HTML · CSS · Bootstrap</small><div class="project-links"><a href="https://oniseg.github.io/MeFamily/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/MeFamily" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/pixels.webp" alt="Pixels screenshot" loading="lazy" /></div><div class="mini-info"><h4>Pixels</h4><small>HTML · CSS · Bootstrap</small><div class="project-links"><a href="https://oniseg.github.io/pixels/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/pixels" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+            <article class="mini-card"><div class="project-shot mini-shot"><img src="assets/projects/danial.webp" alt="Developer Portfolio screenshot" loading="lazy" /></div><div class="mini-info"><h4>Developer Portfolio</h4><small>HTML · CSS · JS</small><div class="project-links"><a href="https://oniseg.github.io/danial/" target="_blank" rel="noopener noreferrer">Demo ↗</a><a href="https://github.com/onisEg/danial" target="_blank" rel="noopener noreferrer">Code ↗</a></div></div></article>
+          </div>
+          <a class="more-link" href="https://github.com/onisEg?tab=repositories" target="_blank" rel="noopener noreferrer">More on GitHub ↗</a>
+        </div>
+      </section>
+
+      <!-- Tech stack -->
+      <section class="window" id="window-skills" role="dialog" aria-label="Skills and tools" aria-modal="false" hidden>
+        <div class="window-bar">
+          <div class="traffic"><button class="close" data-close aria-label="Close window"></button><span
+              class="minimize"></span><button class="maximize" data-maximize aria-label="Maximize window"></button></div>
+          <span>package.json</span><span class="window-bar-end">03</span>
+        </div>
+        <div class="window-body">
+          <span class="section-kicker">03 / WHAT I USE</span>
+          <h2>Skills &amp; <span class="accent">tools.</span></h2>
+          <div class="skill-groups">
+            <div>
+              <h3>FRONTEND</h3>
+              <div class="skill-pills">
+                <span><img src="assets/logos/html.webp" alt="" />HTML5</span>
+                <span><img src="assets/logos/css3.webp" alt="" />CSS3</span>
+                <span><img src="assets/logos/javascript.webp" alt="" />JavaScript</span>
+                <span><img src="assets/logos/typescript.webp" alt="" />TypeScript</span>
+                <span><img src="assets/logos/react.webp" alt="" />React</span>
+                <span><img src="assets/logos/redux.webp" alt="" />Redux Toolkit</span>
+                <span><img class="logo-invert" src="assets/logos/nextjs.webp" alt="" />Next.js</span>
+                <span><img src="assets/logos/sass.webp" alt="" />Sass</span>
+                <span><img src="assets/logos/bootstrap.webp" alt="" />Bootstrap</span>
+                <span><img class="logo-invert" src="assets/logos/tailwind.svg" alt="" />Tailwind CSS</span>
+                <span><img src="assets/logos/mui.webp" alt="" />Material UI</span>
+              </div>
+            </div>
+            <div>
+              <h3>TOOLS &amp; WORKFLOW</h3>
+              <div class="skill-pills">
+                <span><img class="logo-invert" src="assets/logos/github.webp" alt="" />Git &amp; GitHub</span>
+                <span><img src="assets/logos/vite.webp" alt="" />Vite</span>
+                <span>REST APIs</span>
+                <span>JWT auth</span>
+                <span><img src="assets/logos/postman.webp" alt="" />Postman</span>
+                <span><img src="assets/logos/swagger.webp" alt="" />Swagger</span>
+              </div>
+            </div>
+            <div>
+              <h3>DESIGN</h3>
+              <div class="skill-pills">
+                <span><img src="assets/logos/figma.webp" alt="" />Figma</span>
+                <span>UI/UX</span><span>Prototyping</span><span>Photoshop</span><span>Canva</span>
+              </div>
+            </div>
+            <div>
+              <h3>CMS &amp; E-COMMERCE</h3>
+              <div class="skill-pills"><span>Shopify</span><span>PrestaShop</span><span>WordPress</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="window" id="window-experience" role="dialog" aria-label="Experience" aria-modal="false" hidden>
+        <div class="window-bar">
+          <div class="traffic"><button class="close" data-close aria-label="Close window"></button><span
+              class="minimize"></span><button class="maximize" data-maximize aria-label="Maximize window"></button></div>
+          <span>experience.log</span><span class="window-bar-end">04</span>
+        </div>
+        <div class="window-body">
+          <span class="section-kicker">04 / WHERE I'VE WORKED</span>
+          <h2>Experience<span class="accent">.</span></h2>
+          <ol class="timeline">
+            <li><time>Present</time><div><h3>Freelance Web Developer</h3><p class="timeline-company">Self-employed · Barcelona</p>
+              <ul><li>Set up and customize e-commerce stores on PrestaShop and Shopify for small businesses.</li><li>Fix frontend issues and improve page speed and usability on client sites.</li></ul></div></li>
+            <li><time>Oct 2024 — May 2025</time><div><h3>Frontend Developer</h3><p class="timeline-company">FITS Lab Dev · Remote</p>
+              <ul><li>Guided and supported a team of developers to deliver project goals.</li><li>Built frontend features for e-commerce, car-rental and user-management applications.</li></ul></div></li>
+            <li><time>May 2024 — Oct 2024</time><div><h3>Frontend Developer</h3><p class="timeline-company">Upskilling Academy</p>
+              <ul><li>Built React + TypeScript apps against production-style REST APIs: Book Shop, Food Recipes, Project Management System and User Management System.</li><li>Implemented JWT authentication, protected routes, form validation and role-based dashboards.</li></ul></div></li>
+            <li><time>Feb 2024 — Oct 2024</time><div><h3>UI/UX Designer</h3><p class="timeline-company">Smart Developer for Programming &amp; Design</p>
+              <ul><li>Designed interfaces for government-service and product platforms.</li></ul></div></li>
+            <li><time>Oct 2023 — Jan 2024</time><div><h3>UI/UX Design Intern</h3><p class="timeline-company">Route · Remote</p>
+              <ul><li>Ran user research and turned findings into wireframes, prototypes and high-fidelity mockups.</li><li>Designed "Chill Away", a travel app to find and compare travel packages, deals and hotels.</li></ul></div></li>
+            <li><time>Apr 2022 — Oct 2022</time><div><h3>Internship Trainee</h3><p class="timeline-company">Kal-Bunyan Al-Marsous</p>
+              <ul><li>Frontend training focused on JavaScript and CSS.</li></ul></div></li>
+            <li><time>Jul 2019 — Aug 2021</time><div><h3>Designer and Developer</h3><p class="timeline-company">Gorgov Digital Advertising Agency</p>
+              <ul><li>Web development and graphic design (Adobe Photoshop) for agency clients.</li></ul></div></li>
+            <li><time>Aug 2018 — Nov 2018</time><div><h3>Frontend Developer</h3><p class="timeline-company">Tech Village Egypt</p>
+              <ul><li>Built website layouts with HTML, CSS and Bootstrap.</li></ul></div></li>
+          </ol>
+
+          <h3 class="subsection-title">Education</h3>
+          <div class="info-cards">
+            <div><h4>Web Development Course</h4><p>IT Academy · Barcelona Activa</p><small>Apr 2026 – Mar 2027 · In progress</small><p class="info-note">JavaScript fundamentals and frontend specialization in React.</p></div>
+            <div><h4>Information Systems</h4><p>Abasia Institute</p><small>2011 – 2015</small></div>
+          </div>
+
+          <h3 class="subsection-title">Certifications</h3>
+          <div class="info-cards">
+            <a href="assets/certifications/become-a-programmer-foundations.pdf" target="_blank" rel="noopener noreferrer"><h4>Become a Programmer: Foundations (Learning Path, 25h)</h4><small>LinkedIn Learning · 2022</small></a>
+            <a href="assets/certifications/programming-foundations-apis-and-web-services.pdf" target="_blank" rel="noopener noreferrer"><h4>Programming Foundations: Algorithms, Data Structures, OOP, Design Patterns, APIs, Web Security, Testing &amp; TDD (13 courses)</h4><small>LinkedIn Learning · 2022</small></a>
+            <a href="assets/certifications/chatgpt-certification.png" target="_blank" rel="noopener noreferrer"><h4>Essentials of ChatGPT</h4><small>Almdrasa</small></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resume: the PDF opens right inside the window -->
+      <section class="window resume-window" id="window-resume" role="dialog" aria-label="Resume" aria-modal="false" hidden>
+        <div class="window-bar">
+          <div class="traffic"><button class="close" data-close aria-label="Close window"></button><span
+              class="minimize"></span><button class="maximize" data-maximize aria-label="Maximize window"></button></div>
+          <span id="resume-file-name">Resume_EN.pdf</span><span class="window-bar-end">PDF</span>
+        </div>
+        <div class="window-body resume-body">
+          <div class="resume-tabs" role="tablist" aria-label="Resume language">
+            <button class="resume-tab is-active" role="tab" aria-selected="true" data-resume-language="en">English</button>
+            <button class="resume-tab" role="tab" aria-selected="false" data-resume-language="es">Español</button>
+          </div>
+          <!-- The PDF pages are drawn here by PDF.js, so the CV is only displayed, never downloaded -->
+          <div class="resume-viewer" id="resume-viewer" aria-live="polite">
+            <p class="resume-status" id="resume-status">Loading resume…</p>
+          </div>
+          <div class="resume-actions">
+            <a class="solid-button" id="resume-open-link" href="assets/cv/Anas_Alnagar_Frontend_Developer_CV_EN.pdf" target="_blank" rel="noopener noreferrer">Open in new tab ↗</a>
+            <a class="outline-button" id="resume-download-link" href="assets/cv/Anas_Alnagar_Frontend_Developer_CV_EN.pdf" download="Anas_Alnagar_Frontend_Developer_CV_EN.pdf">Download</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="window small-window" id="window-contact" role="dialog" aria-label="Contact" aria-modal="false" hidden>
+        <div class="window-bar">
+          <div class="traffic"><button class="close" data-close aria-label="Close window"></button><span
+              class="minimize"></span><button class="maximize" data-maximize aria-label="Maximize window"></button></div>
+          <span>contact.eml</span><span class="window-bar-end">05</span>
+        </div>
+        <div class="window-body">
+          <span class="section-kicker">05 / GET IN TOUCH</span>
+          <h2>Let's work <span class="accent">together.</span></h2>
+          <p class="window-lead">Have a project in mind or a frontend role to offer? Reach me directly — I reply within
+            24–48 hours.</p>
+          <a class="contact-link" href="mailto:anasdesigneruiux@gmail.com"><span>Email<small>anasdesigneruiux@gmail.com</small></span><span>↗</span></a>
+          <a class="contact-link" href="https://wa.me/34666281390" target="_blank" rel="noopener noreferrer"><span>WhatsApp<small>+34 666 28 13 90</small></span><span>↗</span></a>
+          <a class="contact-link" href="https://www.linkedin.com/in/anaseg/" target="_blank" rel="noopener noreferrer"><span>LinkedIn<small>in/anaseg</small></span><span>↗</span></a>
+          <a class="contact-link" href="https://github.com/onisEg" target="_blank" rel="noopener noreferrer"><span>GitHub<small>onisEg</small></span><span>↗</span></a>
+          <a class="contact-link" href="https://www.behance.net/AnasEg" target="_blank" rel="noopener noreferrer"><span>Behance<small>AnasEg</small></span><span>↗</span></a>
+        </div>
+      </section>
+
+      <!-- Now -->
+      <section class="window small-window" id="window-now" role="dialog" aria-label="What I'm doing now" aria-modal="false" hidden>
+        <div class="window-bar">
+          <div class="traffic"><button class="close" data-close aria-label="Close window"></button><span
+              class="minimize"></span><button class="maximize" data-maximize aria-label="Maximize window"></button></div>
+          <span>now.md</span><span class="window-bar-end">MD</span>
+        </div>
+        <div class="window-body">
+          <span class="section-kicker">06 / RIGHT NOW</span>
+          <h2>What I'm <span class="accent">up to.</span></h2>
+          <ul class="now-list">
+            <li><span>→</span>Doing the IT Academy frontend React specialization in Barcelona.</li>
+            <li><span>→</span>Building itAlumni, an alumni platform for IT Academy graduates.</li>
+            <li><span>→</span>Building SpendWise, an AI assistant that helps you decide before you buy — started at HackBarna's HackNight.</li>
+            <li><span>→</span>Improving my Spanish and English every day.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== Dock: click to open a window, click again to close it ===== -->
+    <nav class="dock" aria-label="Quick navigation">
+      <span class="dock-tooltip" id="dock-tooltip" aria-hidden="true">open me</span>
+      <button class="dock-item" data-toggle="about" aria-label="About me" data-tip="About">◉</button>
+      <button class="dock-item" data-toggle="projects" aria-label="Projects" data-tip="Projects">▦</button>
+      <button class="dock-item" data-toggle="skills" aria-label="Skills and tools" data-tip="Skills">⌘</button>
+      <button class="dock-item" data-toggle="experience" aria-label="Experience" data-tip="Experience">≡</button>
+      <button class="dock-item dock-pdf" data-toggle="resume" aria-label="Resume" data-tip="Resume">CV</button>
+      <button class="dock-item" data-toggle="contact" aria-label="Contact" data-tip="Contact">@</button>
+      <span class="dock-divider"></span>
+      <button class="dock-item theme-item" id="theme-toggle" aria-label="Switch color theme" data-tip="Light mode">☀</button>
+    </nav>
+    <div class="mobile-hint">tap an icon to explore</div>
+  </div>
+
+  <!-- ===== Screenshot viewer: click a project screenshot to see the whole page ===== -->
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="lightbox-bar"><span id="lightbox-title"></span><button class="lightbox-close" id="lightbox-close" aria-label="Close screenshot">×</button></div>
+    <div class="lightbox-scroll"><img id="lightbox-image" alt="" /></div>
+  </div>
+
+  <!-- Cursor trail lives here -->
+  <div class="cursor-trail-layer" id="cursor-trail-layer" aria-hidden="true"></div>
+</body>
+
+</html>
