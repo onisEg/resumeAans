@@ -141,7 +141,7 @@ allWindows.forEach(windowElement => {
 /* ---------- Dock tooltip ---------- */
 document.querySelectorAll('.dock-item').forEach(dockButton => {
   dockButton.addEventListener('mouseenter', () => { dockTooltip.textContent = dockButton.dataset.tip; });
-  dockButton.addEventListener('mouseleave', () => { dockTooltip.textContent = 'open me'; });
+  dockButton.addEventListener('mouseleave', () => { dockTooltip.textContent = window.portfolioI18n.translate('open me'); });
 });
 
 /* ---------- Light / dark theme (remembered between visits) ---------- */
@@ -152,7 +152,8 @@ function applyTheme(themeName) {
   const isLight = themeName === 'light';
   desktopElement.classList.toggle('light', isLight);
   themeToggleButton.textContent = isLight ? '☾' : '☀';
-  themeToggleButton.dataset.tip = isLight ? 'Dark mode' : 'Light mode';
+  themeToggleButton.dataset.tip = window.portfolioI18n.translate(isLight ? 'Dark mode' : 'Light mode');
+  themeToggleButton.setAttribute('aria-label', window.portfolioI18n.translate('Switch color theme'));
 }
 
 function readSavedTheme() {
@@ -171,7 +172,7 @@ themeToggleButton.addEventListener('click', () => {
 /* ---------- Clock in the menu bar ---------- */
 const clockElement = document.getElementById('clock');
 function updateClock() {
-  clockElement.textContent = new Intl.DateTimeFormat('en-GB', {
+  clockElement.textContent = new Intl.DateTimeFormat(window.portfolioI18n.language === 'es' ? 'es-ES' : 'en-GB', {
     weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'
   }).format(new Date());
 }
@@ -186,6 +187,7 @@ const terminalScript = [
   { command: 'pwd', output: '/barcelona/spain' },
   { command: 'status', output: 'open to work ✔' }
 ];
+let terminalRunId = 0;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const wait = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
 
@@ -207,23 +209,29 @@ function createPromptLine() {
 }
 
 async function runTerminal() {
+  const runId = ++terminalRunId;
+  terminalBody.replaceChildren();
   // Small screens show a shorter session so the widget doesn't cover the title.
   const visibleSteps = window.innerWidth <= mobileBreakpoint ? terminalScript.slice(0, 2) : terminalScript;
   for (const step of visibleSteps) {
+    if (runId !== terminalRunId) return;
     const { lineElement, commandText } = createPromptLine();
     terminalBody.appendChild(lineElement);
     if (prefersReducedMotion) {
       commandText.textContent = step.command;
     } else {
       for (const character of step.command) {
+        if (runId !== terminalRunId) return;
         commandText.textContent += character;
         await wait(70);
       }
       await wait(250);
     }
-    terminalBody.appendChild(createLine('output', step.output));
+    if (runId !== terminalRunId) return;
+    terminalBody.appendChild(createLine('output', window.portfolioI18n.translate(step.output)));
     if (!prefersReducedMotion) await wait(450);
   }
+  if (runId !== terminalRunId) return;
   const { lineElement } = createPromptLine();
   const caret = document.createElement('span');
   caret.className = 'terminal-caret';
@@ -273,7 +281,7 @@ function runBootScreen() {
       for (const step of bootSteps) {
         if (isSkipped) break;
         bootProgressFill.style.width = `${step.progress}%`;
-        bootLog.textContent = step.message;
+        bootLog.textContent = window.portfolioI18n.translate(step.message);
         await wait(420);
       }
       bootProgressFill.style.width = '100%';
@@ -470,7 +478,7 @@ const resumeOpenLink = document.getElementById('resume-open-link');
 const resumeDownloadLink = document.getElementById('resume-download-link');
 const resumeFileName = document.getElementById('resume-file-name');
 const loadedResumeDocuments = {};
-let selectedResumeLanguage = 'en';
+let selectedResumeLanguage = window.portfolioI18n.language;
 let pdfLibraryPromise = null;
 let renderRequestNumber = 0;
 
@@ -549,7 +557,7 @@ async function getResumeDocument(language) {
 
 async function renderResume() {
   const thisRenderNumber = ++renderRequestNumber;
-  if (!resumeViewer.querySelector('canvas')) showResumeMessage('Loading resume…');
+  if (!resumeViewer.querySelector('canvas')) showResumeMessage(window.portfolioI18n.translate('Loading resume…'));
 
   try {
     const resumeDocument = await getResumeDocument(selectedResumeLanguage);
@@ -570,7 +578,7 @@ async function renderResume() {
       pageCanvas.width = Math.floor(viewport.width);
       pageCanvas.height = Math.floor(viewport.height);
       pageCanvas.style.width = `${Math.floor(viewport.width / pixelRatio)}px`;
-      pageCanvas.setAttribute('aria-label', `Resume page ${pageNumber} of ${resumeDocument.numPages}`);
+      pageCanvas.setAttribute('aria-label', window.portfolioI18n.language === 'es' ? `Página ${pageNumber} de ${resumeDocument.numPages} del currículum` : `Resume page ${pageNumber} of ${resumeDocument.numPages}`);
       await pdfPage.render({ canvasContext: pageCanvas.getContext('2d'), viewport }).promise;
       if (thisRenderNumber !== renderRequestNumber) return;
       pageCanvases.push(pageCanvas);
@@ -581,7 +589,7 @@ async function renderResume() {
     resumeViewer.scrollTop = previousScroll;
   } catch (error) {
     if (thisRenderNumber !== renderRequestNumber) return;
-    showResumeMessage('The resume preview could not load here. Use "Open in new tab" to view it.');
+    showResumeMessage(window.portfolioI18n.translate('The resume preview could not load here. Use "Open in new tab" to view it.'));
     console.warn(error);
   }
 }
@@ -600,12 +608,15 @@ function selectResumeLanguage(language) {
   resumeFileName.textContent = label;
   resumeViewer.scrollTop = 0;
   resumeViewer.replaceChildren();
-  renderResume();
+  if (!resumeWindow.hidden) renderResume();
 }
 
 document.querySelectorAll('.resume-tab').forEach(languageTab => {
   languageTab.addEventListener('click', () => selectResumeLanguage(languageTab.dataset.resumeLanguage));
 });
+
+// Initialize the PDF viewer in the website's selected language.
+selectResumeLanguage(selectedResumeLanguage);
 
 // Draw the pages when the window opens, and redraw when its size changes
 // (maximize, browser resize) so the text stays sharp.
@@ -650,3 +661,11 @@ document.addEventListener('keydown', event => {
     event.stopImmediatePropagation();
   }
 }, true);
+
+/* ---------- Keep dynamic widgets in sync after switching languages ---------- */
+window.addEventListener('portfolio:languagechange', () => {
+  updateClock();
+  applyTheme(desktopElement.classList.contains('light') ? 'light' : 'dark');
+  selectResumeLanguage(window.portfolioI18n.language);
+  if (!bootScreen.isConnected || bootScreen.classList.contains('is-done')) runTerminal();
+});

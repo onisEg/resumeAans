@@ -573,3 +573,26 @@ a.info-cards > *:hover, .info-cards a:hover { border-color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---------- English / Spanish language switch ---------- */
+.language-switch {
+  display: inline-flex; align-items: center; gap: 2px;
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 2px; background: var(--panel); flex: none;
+}
+.language-option {
+  padding: 2px 7px; border: 0; border-radius: 4px;
+  background: transparent; color: var(--muted);
+  font: 700 10px var(--font-mono); line-height: 18px;
+  transition: color .2s, background .2s;
+}
+.language-option:hover { color: var(--ink); }
+.language-option.is-active, .language-option.is-active:hover {
+  background: var(--accent); color: #fff;
+}
+@media (max-width: 700px) {
+  .menubar .menu-left { gap: 8px; }
+  .menubar .menu-right { gap: 5px; }
+  .menubar #clock { display: none; }
+  .language-option { padding: 1px 5px; }
+}

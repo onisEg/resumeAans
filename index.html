@@ -14,6 +14,7 @@
     rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="style.css" />
+  <script src="i18n.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 
@@ -38,6 +39,10 @@
         <button class="menulink" data-open="contact">Contact</button>
       </div>
       <div class="menu-right">
+        <div class="language-switch" role="group" aria-label="Website language">
+          <button type="button" class="language-option" data-language="en" lang="en" title="English" aria-pressed="false">EN</button>
+          <button type="button" class="language-option is-active" data-language="es" lang="es" title="Español" aria-pressed="true">ES</button>
+        </div>
         <span class="status-dot" title="Open to work"></span>
         <span class="status-text">Open to frontend roles · Barcelona &amp; remote</span>
         <span id="clock">—</span>
